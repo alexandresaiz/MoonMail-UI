@@ -168,7 +168,6 @@ export default function(options) {
         }
       }),
       new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           unused: true,
