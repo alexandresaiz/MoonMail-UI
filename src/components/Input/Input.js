@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import cx from 'classnames';
 import humanize from 'humanize-string';
-import {omitProps} from '../../lib/utils';
+import {omitProps} from 'lib/utils';
 
 const Input = ({
   invalid,

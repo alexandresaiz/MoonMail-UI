@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import cx from 'classnames';
-import {stringToArray} from '../../lib/utils';
+import {stringToArray} from 'lib/utils';
 import humanize from 'humanize-string';
 
 class Select extends Component {
@@ -19,6 +19,8 @@ class Select extends Component {
     ]),
     label: PropTypes.oneOfType([
       PropTypes.string,
+      PropTypes.element,
+      PropTypes.func,
       PropTypes.bool
     ]),
     placeholder: PropTypes.oneOfType([
@@ -26,6 +28,7 @@ class Select extends Component {
       PropTypes.bool
     ]),
     fieldClass: PropTypes.string,
+    hint: PropTypes.string,
     error: PropTypes.any,
     search: PropTypes.bool,
     loading: PropTypes.bool,
@@ -39,6 +42,16 @@ class Select extends Component {
       onChange: this.onChange,
       allowAdditions: this.props.allowAdditions
     });
+    this.selectDefaultValue();
+  }
+
+  selectDefaultValue() {
+    if (this.props.value) {
+      return setTimeout(() => {
+        this.element.dropdown('set selected', this.props.value);
+      });
+    }
+    this.element.dropdown('clear');
   }
 
   onChange = (value) => {
@@ -49,12 +62,7 @@ class Select extends Component {
   };
 
   componentDidUpdate() {
-    if (this.props.value) {
-      return setTimeout(() => {
-        this.element.dropdown('set selected', this.props.value);
-      });
-    }
-    this.element.dropdown('clear');
+    this.selectDefaultValue();
   }
 
   render() {
@@ -70,17 +78,18 @@ class Select extends Component {
     });
     return (
       <div className={cx('field', props.fieldClass, {error: props.touched && props.invalid})}>
-        {props.label !== false && <label>{labelText}</label>}
+        {props.label !== false && <label htmlFor={props.name}>{labelText}</label>}
         <div
-          className={dropDownClass}
-          ref={(s) => { this.element = $(s); }}>
-          <input name={props.name} type="hidden" />
+          className={cx(dropDownClass)}
+          ref={s => { this.element = $(s); }}>
+          <input name={props.name} id={props.name} type="hidden" />
           <i className="dropdown icon" />
           <div className="default text">{props.placeholder || ''}</div>
           <div className="menu">
             {props.children}
           </div>
         </div>
+        {props.hint && !(props.touched && props.invalid) && <div className="hint">{props.hint}</div>}
         {props.touched && props.invalid && <div className="ui basic red pointing prompt label">
           {errorText}
         </div>}

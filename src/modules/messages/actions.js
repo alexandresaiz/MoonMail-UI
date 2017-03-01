@@ -3,6 +3,7 @@ import {getMessages} from './selectors';
 import {Schema, normalize} from 'normalizr';
 
 export const messageSchema = new Schema('messages');
+
 let nId = 0;
 export const addMessage = (props = {}) => {
   return (dispatch, getState) => {
@@ -12,7 +13,7 @@ export const addMessage = (props = {}) => {
     }
     const message = {
       id: nId,
-      delay: 3000,
+      delay: 5000,
       style: 'error',
       ...props
     };

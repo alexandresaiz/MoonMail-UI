@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
-import Header from '../../components/Header';
-import MessagesStack from '../../components/MessagesStack'
+import Header from 'components/Header';
+import MessagesStack from 'components/MessagesStack'
 
 const App = ({children}) => (
   <div>

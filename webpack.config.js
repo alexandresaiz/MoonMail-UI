@@ -1,42 +1,77 @@
 import webpack from 'webpack';
-import cssnano from 'cssnano';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from 'path';
 
-const cssModulesLoader = [
-  'css?sourceMap&-minimize',
-  'modules',
-  'importLoaders=1',
-  'localIdentName=[name]__[local]__[hash:base64:5]'
-].join('&');
+const resolve = path.resolve;
+const base = (...args) =>
+  resolve.apply(null, [path.resolve(), ...args]);
+
+const paths = {
+  base,
+  client: base.bind(null, 'src'),
+  dist: base.bind(null, 'dist')
+};
+
+const cssModulesLoader = {
+  loader: 'css-loader',
+  query: {
+    modules: true,
+    importLoaders: 1,
+    localIdentName: '[name]__[local]___[hash:base64:5]'
+  }
+};
 
 export default function(options) {
   const webpackConfig = {
+    name: 'client',
+    target: 'web',
     entry: [
-      './src/index.js'
+      paths.client('index.js')
     ],
     output: {
       path: __dirname + '/public',
       publicPath: '/',
-      filename: 'bundle.[hash].js'
+      filename: 'bundle.[hash].js',
+      devtoolModuleFilenameTemplate: '/[resource-path]'
+    },
+    resolve: {
+      modules: [paths.client(), 'node_modules'],
+      extensions: ['.js', '.jsx', '.json'],
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-        favicon: './src/static/favicon.png',
+        template: paths.client('index.html'),
+        favicon: paths.client('static/favicon.png'),
         filename: 'index.html',
-        inject: 'body'
+        inject: 'body',
+        minify: {
+          collapseWhitespace: true
+        }
       }),
       new ExtractTextPlugin({
         filename: 'styles.[hash].css',
         allChunks: true
+      }),
+      new webpack.LoaderOptionsPlugin({
+        options: {
+          sassLoader: {
+            includePaths: paths.client('styles')
+          },
+          postcss: [
+            require('postcss-cssnext')({
+              browsers: ['last 2 versions', '> 5%']
+            }),
+            require('postcss-reporter')(),
+          ]
+        }
       })
     ],
     module: {
       loaders: [{
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           cacheDirectory: true,
           plugins: ['transform-runtime'],
@@ -52,7 +87,7 @@ export default function(options) {
             },
             test: {
               plugins: [
-                ['__coverage__', {'only': 'src/'}],
+                ['__coverage__', {'only': paths.client()}],
                 'babel-plugin-rewire'
               ]
             }
@@ -60,52 +95,30 @@ export default function(options) {
         }
       }, {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       }, {
         test: /\.html$/,
-        loader: 'html'
+        loader: 'html-loader'
       }, {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
           disable: options.dev,
-          fallbackLoader: 'style-loader',
-          loader: [cssModulesLoader, 'postcss', 'sass?sourceMap']
+          fallback: 'style-loader',
+          use: [cssModulesLoader, 'postcss-loader', 'sass-loader']
         })
       }, {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: ['css-loader', 'postcss']
+          disable: options.dev,
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader']
         })
       }]
-    },
-    resolve: {
-      modules: ['node_modules'],
-      extensions: ['', '.js', '.jsx', '.json'],
-      alias: {}
-    },
-    globals: {},
-    postcss: [
-      cssnano({
-        autoprefixer: {
-          add: true,
-          remove: true,
-          browsers: ['last 2 versions']
-        },
-        discardComments: {
-          removeAll: true
-        },
-        discardUnused: false,
-        mergeIdents: false,
-        reduceIdents: false,
-        safe: true,
-        sourcemap: true
-      })
-    ]
+    }
   };
 
   if (options.dev) {
-    webpackConfig.devtool = 'source-map';
+    webpackConfig.devtool = 'eval';
     webpackConfig.plugins.push(
       new webpack.DefinePlugin({
         '__DEV_': true

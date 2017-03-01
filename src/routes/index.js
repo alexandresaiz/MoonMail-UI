@@ -1,4 +1,4 @@
-import App from '../components/App';
+import App from 'components/App';
 import WelcomeRoute from './Welcome';
 import SettingsRoute from './Settings';
 import CampaignRoute from './Campaign';

@@ -1,4 +1,4 @@
-import * as types from '../actions/types';
+import * as types from 'actions/types';
 
 function isSendingReducer(state = false, action) {
   switch (action.type) {

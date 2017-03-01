@@ -1,26 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm} from 'redux-form';
-import * as actions from '../../actions';
+import * as actions from 'actions';
 import CampaignView from './CampaignView';
-import Validator from 'validatorjs';
-
-Validator.register(
-  'emailBody',
-  value => value.includes('{{unsubscribe_url}}'),
-  'Please include {{unsubscribe_url}}'
-);
-
-const rules = {
-  subject: 'required',
-  listIds: 'required',
-  body: 'required|emailBody'
-};
-
-const validate = values => {
-  const validator = new Validator(values, rules);
-  validator.passes();
-  return validator.errors.all();
-};
+import {createValidator} from 'lib/validator';
 
 class Campaign extends Component {
   static propTypes = {
@@ -46,5 +28,9 @@ const mapStateToProps = (state) => ({
 export default reduxForm({
   form: 'campaign',
   fields: ['subject', 'listIds', 'body'],
-  validate
+  validate: createValidator({
+    subject: 'required',
+    listIds: 'required',
+    body: 'required|emailBody'
+  })
 }, mapStateToProps, actions)(Campaign);

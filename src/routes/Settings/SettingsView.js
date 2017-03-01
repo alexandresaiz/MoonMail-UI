@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import Input from '../../components/Input';
-import Select, {SelectItem} from '../../components/Select';
-import Button from '../../components/Button';
-import {SES_REGIONS} from '../../lib/constants';
+import Input from 'components/Input';
+import Select, {SelectItem} from 'components/Select';
+import Button from 'components/Button';
+import {SES_REGIONS} from 'lib/constants';
 
 const SettingsView = ({
   fields: {

@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import Message from '../../components/Message';
+import Message from 'components/Message';
 import classNames from './MessagesStack.scss';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 

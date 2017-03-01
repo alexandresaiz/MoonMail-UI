@@ -1,9 +1,9 @@
 import storage from 'store';
 import cuid from 'cuid';
 import * as types from './types';
-import * as api from '../lib/api';
-import {isEmpty, omitProps} from '../lib/utils'
-import {addMessage} from '../modules/messages/actions';
+import * as api from 'lib/api';
+import {isEmpty, omitProps} from 'lib/utils'
+import {addMessage} from 'modules/messages/actions';
 
 export const saveSettings = (settings) => {
   storage.set('settings', settings);

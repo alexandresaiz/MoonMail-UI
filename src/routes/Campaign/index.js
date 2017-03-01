@@ -1,5 +1,5 @@
 import Campaign from './CampaignContainer';
-import RequireSettings from '../../containers/RequireSettings'
+import RequireSettings from 'containers/RequireSettings'
 
 export default {
   path: '/campaign',

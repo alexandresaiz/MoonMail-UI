@@ -4,26 +4,36 @@ import join from 'url-join';
 
 const apiClient = axios.create();
 
+const rejectWithError = message => () => (
+  new Promise((resolve, reject) => reject({
+    response: {data: {message}}
+  }))
+);
+
+const errorHandler = error => {
+  if (error) {
+    if (error.response) {
+      const errorMessage = error.response.data && error.response.data.message;
+      return Promise.reject(errorMessage);
+    } else {
+      return Promise.reject(error.message);
+    }
+  }
+};
+
 apiClient.interceptors.request.use(config => {
   const settings = storage.get('settings') || {};
   if (settings.token) {
     config.headers['Authorization'] = `Bearer ${settings.token}`;
   }
   if (!settings.baseUrl) {
-    config.adapter = (resolve, reject) => reject('Please provide all required settings');
+    config.adapter = rejectWithError('Please provide all required settings');
   }
   config.url = join(settings.baseUrl, config.url);
   return config;
-}, error => {
-  return Promise.reject(error.data);
-});
+}, errorHandler);
 
-apiClient.interceptors.response.use(response => {
-  return response.data;
-}, error => {
-  const errorMessage = (error.data && error.data.message) || error;
-  return Promise.reject(errorMessage);
-});
+apiClient.interceptors.response.use(response => response.data, errorHandler);
 
 export const sendCampaign = (canonicalMessage) =>
   apiClient.post(`campaigns/test`, canonicalMessage);
