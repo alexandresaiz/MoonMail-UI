@@ -12,6 +12,8 @@ Send email marketing campaigns with [Amazon SES](https://aws.amazon.com/ses/). L
   -  You have set up the [Serverless](https://serverless.com/) project as described in the [documentation](https://github.com/microapps/MoonMail#getting-started)
   - You are using a SES endpoint that has production access (not sandbox mode)
   - You have created a recipients list and added some recipients to it through the API
+  
+## [Demo](https://microapps.github.io/MoonMail-UI/)
 
 ## Contributing Guidelines
 Contributions are always welcome! If you'd like to collaborate with us, take into account that:
