@@ -1,7 +1,6 @@
 # [MoonMail](https://github.com/microapps/MoonMail) UI
 
 [![Build Status](https://travis-ci.org/microapps/MoonMail.svg?branch=master)](https://travis-ci.org/microapps/MoonMail)
-[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/microapps/MoonMail.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fmicroapps%2FMoonMail%2F)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/microapps/MoonMail/master/LICENSE)
 [![Gitter](https://badges.gitter.im/microapps/MoonMail.svg)](https://gitter.im/microapps/MoonMail?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -23,10 +22,9 @@ Contributions are always welcome! If you'd like to collaborate with us, take int
 
 Feel free to <a href="mailto:hi@microapps.com">contact us</a> if you have any question!
 
-
 ## License
 
-MoonMail is available under the MIT license. See the LICENSE file for more info.
+[MoonMail](https://moonmail.io/?utm_source=MM-UI-readme&utm_medium=click&utm_campaign=github) is available under the MIT license. See the LICENSE file for more info.
 
 ### Credits
-Developed by [microapps](http://microapps.com/?utm_source=serverless-webhooks-readme&utm_medium=click&utm_campaign=github) Used in [MoonMail](https://moonmail.io/?utm_source=MM-UI-readme&utm_medium=click&utm_campaign=github) 
+Developed by [microapps](http://microapps.com/?utm_source=MM-UI-readme&utm_medium=click&utm_campaign=github) Used in [MoonMail](https://moonmail.io/?utm_source=MM-UI-readme&utm_medium=click&utm_campaign=github) 
