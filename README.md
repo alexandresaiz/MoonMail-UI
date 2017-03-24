@@ -28,12 +28,5 @@ Feel free to <a href="mailto:hi@microapps.com">contact us</a> if you have any qu
 
 MoonMail is available under the MIT license. See the LICENSE file for more info.
 
-## Professional Help
-
-If you need support getting MoonMail into production in your AWS account, contact the experts:
-
-- <a href="mailto:ryan@serverlesscode.com">ServerlessCode</a>
-- <a href="http://www.apiwise.nl">Apiwise</a>
-- <a href="https://sc5.io">SC5</a>
-- <a href="mailto:sam@acloud.guru">A Cloud Guru - AWS training & serverless experts</a> (<a href="https://acloud.guru">Visit Web Site</a>)
-- <a href="mailto:hello@goltfisch.de">Just Serverless</a>
+### Credits
+Developed by [microapps](http://microapps.com/?utm_source=serverless-webhooks-readme&utm_medium=click&utm_campaign=github) Used in [MoonMail](https://moonmail.io/?utm_source=MM-UI-readme&utm_medium=click&utm_campaign=github) 
