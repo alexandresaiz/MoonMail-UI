@@ -1,7 +1,7 @@
 {
   "name": "moonamil-ui",
   "version": "1.0.0",
-  "description": "Simple UI for MoonMail project",
+  "description": "UI for MoonMail Open Source",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   "keywords": [
     "moonmail"
   ],
-  "author": "Dmitriy Nevzorov",
+  "author": "the microapps team",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/microapps/MoonMail-UI/issues"
