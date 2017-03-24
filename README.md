@@ -12,7 +12,7 @@ Send email marketing campaigns with [Amazon SES](https://aws.amazon.com/ses/). L
   - You are using a SES endpoint that has production access (not sandbox mode)
   - You have created a recipients list and added some recipients to it through the API
   
-## [Demo](https://microapps.github.io/MoonMail-UI/)
+# [Demo](https://microapps.github.io/MoonMail-UI/)
 
 ## Contributing Guidelines
 Contributions are always welcome! If you'd like to collaborate with us, take into account that:
@@ -26,5 +26,5 @@ Feel free to <a href="mailto:hi@microapps.com">contact us</a> if you have any qu
 
 [MoonMail](https://moonmail.io/?utm_source=MM-UI-readme&utm_medium=click&utm_campaign=github) is available under the MIT license. See the LICENSE file for more info.
 
-### Credits
+## Credits
 Developed by [microapps](http://microapps.com/?utm_source=MM-UI-readme&utm_medium=click&utm_campaign=github) Used in [MoonMail](https://moonmail.io/?utm_source=MM-UI-readme&utm_medium=click&utm_campaign=github) 
